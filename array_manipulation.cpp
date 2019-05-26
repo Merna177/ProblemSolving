@@ -4,7 +4,6 @@ using namespace std;
 
 vector<string> split_string(string);
 
-// Complete the arrayManipulation function below.
 long arrayManipulation(int n, vector<vector<int>> queries) {
 
 
