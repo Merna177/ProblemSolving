@@ -20,3 +20,4 @@ public:
       return output;
     }
 };
+//https://leetcode.com/problems/sum-of-even-numbers-after-queries/
