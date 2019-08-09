@@ -12,3 +12,4 @@ public:
             
     }
 };
+///time O(N) no extra space
