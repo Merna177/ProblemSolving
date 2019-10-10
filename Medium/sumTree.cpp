@@ -1,30 +1,37 @@
-/**
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+#include <stack>
 class Solution {
 public:
- int bstToG(TreeNode *root,int v){
-	if(!root){
-		return v;
-	}
-
-	root->val += bstToG(root->right,v);
-	int res = root->val;
-
-	if(root->left){
-		res = bstToG(root->left,root->val);
-	}
-
-	return res;
-}
-    
-TreeNode* bstToGst(TreeNode* root) {
-	bstToG(root,0);
-	return root;
-}
+        stack<TreeNode*> nodes;
+        int sum = 0;
+        TreeNode* bstToGst(TreeNode* root)
+		{
+			inOrder(root);
+            while(!nodes.empty())
+            {
+                    if(nodes.top() != NULL)
+                    {
+                        sum += nodes.top()->val;
+                        nodes.top()->val = sum;
+                    }
+                    nodes.pop();
+            }
+            return root;
+		}
+        TreeNode* inOrder(TreeNode* root)
+        {
+                if(root == NULL)
+                {
+                        return NULL;
+                }
+                if(root->left != NULL)
+                {
+                        nodes.push(inOrder(root->left));
+                }
+                nodes.push(root);
+                if(root->right != NULL)
+                {
+                        nodes.push(inOrder(root->right));
+                }
+                return NULL;
+        }
 };
